@@ -73,7 +73,6 @@ export class UsersController {
 
 
   @Get('/:id')
-  @UseGuards(AdminGuard)
   async findUser(@Param('id') id: string) {
     const user = await this.usersService.findOne(parseInt(id));
     if (!user) {
