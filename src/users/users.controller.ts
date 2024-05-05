@@ -20,6 +20,7 @@ import { AuthService } from './auth.service';
 import { CurrentUser } from './decorators/current-user-decorator';
 import { User } from './user.entity';
 import { AuthGuard } from 'src/guards/auth.guard';
+import { AdminGuard } from 'src/guards/admin.guard';
 
 
 @Controller('auth')
@@ -72,6 +73,7 @@ export class UsersController {
 
 
   @Get('/:id')
+  @UseGuards(AdminGuard)
   async findUser(@Param('id') id: string) {
     const user = await this.usersService.findOne(parseInt(id));
     if (!user) {
